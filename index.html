@@ -30,7 +30,7 @@ body
   font-family: Arial, sans-serif;
   background: var(--bg-accent);
   color: var(--text-dark);
-  overflow-x: hidden; /* предотвращаем горизонтальный скролл */
+  overflow-x: hidden;
   width: 100%;
 }
 
@@ -55,7 +55,7 @@ body
   padding: 60px 20px;
   box-shadow: inset 0 -60px 80px rgba(0,0,0,0.4);
   width: 100%;
-  overflow: hidden; /* чтобы логотип не создавал горизонтальный скролл */
+  overflow: hidden;
 }
 
 .hero-wrapper 
@@ -80,7 +80,7 @@ body
 {
   height: 250px;
   opacity: 0.95;
-  max-width: none; /* чтобы изображение не сжималось */
+  max-width: none;
 }
 
 .hero-container 
@@ -182,14 +182,14 @@ body
 {
   width: 460px;
   max-width: 460px;
-  height: 522px;
+  height: 522px;         /* фикс высота только для десктопа */
   max-height: 522px;
   margin-right: 80px;
   padding: 30px 35px;
   box-sizing: border-box;
   background: rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px); /* для Safari */
+  -webkit-backdrop-filter: blur(15px);
   border-radius: 16px;
   border-left: 6px solid var(--rudn-leff);
   display: flex;
@@ -197,7 +197,7 @@ body
   justify-content: flex-start;
   align-items: flex-start;
   text-shadow: 0 2px 5px rgba(0,0,0,0.3);
-  overflow-y: auto;
+  overflow-y: auto;       /* скролл внутри карточки если много текста */
 }
 
 .short-description h1 
@@ -370,6 +370,7 @@ footer
   cursor: pointer;
 }
 
+/* ===== АДАПТАЦИЯ ===== */
 
 @media (max-width: 1600px) 
 {
@@ -410,17 +411,16 @@ footer
     padding: 25px 30px;
   }
   
-  .short-description h1 
-  {
+  .short-description h1 {
     font-size: 28px;
   }
   
-  .short-description p 
-  {
+  .short-description p {
     font-size: 14px;
   }
 }
 
+/* ===== ГЛАВНОЕ ИЗМЕНЕНИЕ ДЛЯ ПЛАНШЕТОВ ===== */
 @media (max-width: 1000px)
 {
   .hero-wrapper 
@@ -431,7 +431,7 @@ footer
   
   .hero-container 
   {
-    grid-template-columns: 1fr; 
+    grid-template-columns: 1fr;
     gap: 30px;
   }
   
@@ -445,7 +445,7 @@ footer
   
   .media-block video 
   {
-    height: auto;   
+    height: auto;
     max-height: 400px;
     width: 100%;
   }
@@ -466,35 +466,31 @@ footer
     height: 120px;
   }
   
+  /* ===== ИСПРАВЛЕНИЕ ДЛЯ ТЕКСТОВОГО БЛОКА ===== */
   .short-description 
   {
     width: 100%;
     max-width: 100%;
-    height: auto;
-    max-height: none;
+    height: auto;           /* ← УБИРАЕМ ФИКСИРОВАННУЮ ВЫСОТУ */
+    max-height: none;       /* ← УБИРАЕМ ОГРАНИЧЕНИЕ */
     margin-right: 0;
     margin-top: 30px;
     padding: 25px 25px;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
+    overflow-y: visible;    /* ← УБИРАЕМ ВНУТРЕННИЙ СКРОЛЛ, ТЕКСТ ТЕЧЁТ СВОБОДНО */
   }
   
-  .short-description h1 
-  {
-    font-size: 28px;
-  }
-  
-  .pricing-container 
-  {
+  .pricing-container {
     grid-template-columns: minmax(280px, 400px);
     justify-content: center;
   }
 }
 
+/* ===== ДЛЯ ТЕЛЕФОНОВ ===== */
 @media (max-width: 600px) 
 {
-  .hero 
-  {
+  .hero {
     padding: 40px 15px;
   }
   
@@ -530,108 +526,86 @@ footer
     height: 70px;
   }
   
+  /* ===== ДОПОЛНИТЕЛЬНАЯ НАСТРОЙКА ДЛЯ МАЛЕНЬКИХ ЭКРАНОВ ===== */
   .short-description 
   {
-    padding: 20px 20px;
+    padding: 20px 18px;
     margin-top: 20px;
-    border-left-width: 4px; 
+    border-left-width: 4px;
   }
   
-  .short-description h1 
-  {
+  .short-description h1 {
     font-size: 24px;
     margin-bottom: 12px;
   }
   
-  .short-description p 
-  {
+  .short-description p {
     font-size: 14px;
     line-height: 1.6;
   }
   
-  .badge 
-  {
+  .badge {
     font-size: 11px;
     padding: 4px 12px;
     margin-bottom: 15px;
   }
   
-  .full-description 
-  {
+  .full-description {
     margin: 40px auto;
     padding: 0 15px;
   }
   
-  .full-description h2 
-  {
+  .full-description h2 {
     font-size: 22px;
   }
   
-  .full-description h3 
-  {
+  .full-description h3 {
     font-size: 18px;
   }
   
-  .pricing 
-  {
+  .pricing {
     padding: 50px 15px;
   }
   
-  .price-card 
-  {
+  .price-card {
     padding: 30px 20px;
   }
   
-  .price 
-  {
+  .price {
     font-size: 42px;
     margin: 15px 0;
   }
   
-  .price-card button 
-  {
+  .price-card button {
     padding: 12px 20px;
     font-size: 15px;
   }
-  
-  .modal-content 
-  {
-    max-width: 95%;
-    max-height: 95%;
-  }
-  
-  .close 
-  {
-    top: 15px;
-    right: 20px;
-    font-size: 35px;
-  }
 }
 
+/* Для очень маленьких экранов */
 @media (max-width: 380px) 
 {
-  .hero-logo img 
-  {
+  .hero-logo img {
     height: 60px;
   }
   
-  .short-description h1
-  {
+  .short-description h1 {
     font-size: 22px;
   }
   
-  .short-description p
-  {
+  .short-description p {
     font-size: 13px;
   }
   
-  .screenshots img
-  {
+  .short-description {
+    padding: 15px 15px;
+  }
+  
+  .screenshots img {
     height: 60px;
   }
   
-  .screenshots
-  {
+  .screenshots {
     height: 80px;
   }
 }
@@ -654,7 +628,7 @@ footer
     <div class="hero-container">
       
       <div class="media-block">
-        <video controls src="video.mp4" poster="poster.jpg" preload="metadata">
+        <video controls src="video.mp4" preload="metadata">
           Ваш браузер не поддерживает видео.
         </video>
         <div class="screenshots">
@@ -773,7 +747,7 @@ function revealOnScroll()
 }
 
 window.addEventListener('scroll', revealOnScroll);
-window.addEventListener('resize', revealOnScroll); // добавили для надежности
+window.addEventListener('resize', revealOnScroll);
 revealOnScroll();
 
 setTimeout(revealOnScroll, 100);
